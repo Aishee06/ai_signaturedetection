@@ -78,7 +78,12 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.result) {
-                                alert(data.result); // Display result in a popup
+                                const similarity = parseFloat(data.result.split(':')[1].trim());
+                                if (similarity > 85) {
+                                    alert(`Similarity: ${similarity.toFixed(2)}%\nMatch`);
+                                } else {
+                                    alert(`Similarity: ${similarity.toFixed(2)}%\nNot a Match`);
+                                }
                             } else if (data.error) {
                                 alert(data.error); // Display error message in a popup
                             }
